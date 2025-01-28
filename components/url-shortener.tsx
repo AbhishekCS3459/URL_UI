@@ -14,7 +14,7 @@ export default function URLShortener() {
   const [shortUrl, setShortUrl] = useState("")
   const [urlHistory, setUrlHistory] = useState<{ longUrl: string; shortenedUrl: string }[]>([])
   const [copying, setCopying] = useState<string | null>(null)
-  const SERVER_BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
+  const SERVER_BASE_URL = "https://p39.mooo.com";
   const generateShortUrl = async () => {
     if (!longUrl) {
       toast.error("Please enter a valid URL")
