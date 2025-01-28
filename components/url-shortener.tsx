@@ -14,7 +14,7 @@ export default function URLShortener() {
   const [shortUrl, setShortUrl] = useState("")
   const [urlHistory, setUrlHistory] = useState<{ longUrl: string; shortenedUrl: string }[]>([])
   const [copying, setCopying] = useState<string | null>(null)
-
+  const SERVER_BASE_URL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
   const generateShortUrl = async () => {
     if (!longUrl) {
       toast.error("Please enter a valid URL")
@@ -23,7 +23,7 @@ export default function URLShortener() {
     console.log("Generating short URL for:", longUrl)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/url/shorten`, {
+      const response = await fetch(`${SERVER_BASE_URL}/api/url/shorten`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,6 +36,7 @@ export default function URLShortener() {
             description: "Shortened URL from our awesome service",
           },
         }),
+        // credentials: "include",
       })
 
       if (!response.ok) {
